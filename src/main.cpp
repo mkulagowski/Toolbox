@@ -1,4 +1,5 @@
 #include "StaticArray.hpp"
+#include "Timer.hpp"
 
 int main()
 {
@@ -17,7 +18,9 @@ int main()
 	z[-1] = 4;
 	z[-0] = 0;
 
-	z.reverse();
+	auto res = Timer<double, std::milli, std::chrono::steady_clock>::measureExecution(&StaticArray<10, int, int>::reverse, z);
+	printf("time: %f", res.count());
+
 	auto zx = z.reverseCopy();
 	return 0;
 }
